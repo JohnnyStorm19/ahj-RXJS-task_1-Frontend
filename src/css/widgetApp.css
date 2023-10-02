@@ -1,0 +1,37 @@
+.widget-container {
+    display: grid;
+    row-gap: .5rem;
+    grid-template-rows: max-content max-content max-content;
+    padding-block: 1rem;
+    width: 50%;
+    min-height: 300px;
+    margin: 0 auto;
+}
+
+.unread-messages-container {
+    display: grid;
+    row-gap: .5rem;
+}
+
+.widget-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+.message-container {
+    padding: 1.3rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-weight: bold;
+}
+
+.status-label {
+    display: flex;
+    justify-content: space-between;
+}
+
+.unchecked-message {
+    font-weight: normal;
+    background-color: #F2F6FC;
+}
