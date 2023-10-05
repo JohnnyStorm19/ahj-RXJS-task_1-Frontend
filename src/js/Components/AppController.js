@@ -1,8 +1,8 @@
 import WidgetApp from './WidgetApp';
 import WidgetAPI from './WidgetAPI';
-import { apiUrl, intervalTime } from './globals';
+import { apiUrl } from './globals';
 
-import { interval } from 'rxjs';
+import { map } from 'rxjs';
 
 
 export default class AppController {
@@ -13,17 +13,12 @@ export default class AppController {
         this.widgetApp.init();
     }
 
-    async recieveUnreadMessages() {
-        const stream$ = await this.widgetApi.requestUnreadMessages();
-        stream$.subscribe(response => {
-            this.widgetApp.createMessage(response);
-        })
-    }
-
-    intervalFunc() {
-        const interval$ = interval(intervalTime);
-        interval$.subscribe( () => {
-            this.recieveUnreadMessages();
-        })
+    recieveUnreadMessages() {
+        const unreadMessages$ = this.widgetApi.getUnreadMessages();
+        unreadMessages$.pipe(
+            map(response => {
+                this.widgetApp.createMessage(response);
+            })
+        ).subscribe(console.log('!!!'))
     }
 }
